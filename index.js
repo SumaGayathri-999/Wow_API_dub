@@ -7,6 +7,9 @@ let mongo = require('mongodb');
 let MongoClient = mongo.MongoClient;
 let mongourl = process.env.LiveMongo;
 let db;
+const cors = require("cors");
+app.use(cors());
+
 
 app.get("/products",(req,res)=>{
 
