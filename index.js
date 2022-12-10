@@ -10,10 +10,34 @@ let db;
 const cors = require("cors");
 app.use(cors());
 
-
 app.get("/products",(req,res)=>{
 
     db.collection("products").find().toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
+app.get("/categories_list",(req,res)=>{
+    db.collection("category").find().toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+app.get("/ingredients_list",(req,res)=>{
+    db.collection("ingredients").find().toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
+app.get("/concerns_list",(req,res)=>{
+    db.collection("concern").find().toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
+app.get("/product_type_list",(req,res)=>{
+    db.collection("product_type").find().toArray((err,result)=>{
         if(err) throw err;
         res.send(result);
     })
