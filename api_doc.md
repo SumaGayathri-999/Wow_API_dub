@@ -44,6 +44,9 @@ http://localhost:8400/ingredients/2?product_type_id=4
  - list of products wrt concern and product type id(filter)
 http://localhost:8400/concern/2?product_type_id=3
 
+ - list of products wrt max price and min price(filter)
+http://localhost:8400/price?min_price=100&max_price=300
+
  - list of products wrt category and cost and product type id(filter)
 http://localhost:8400/categories/1?min_price=500&max_price=1000&product_type_id=2
 
