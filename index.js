@@ -60,7 +60,15 @@ app.get("/products/:productid",(req,res)=>{
     
 })
 
-
+app.get("/price",(req,res)=>{
+    let min_price = Number(req.query.min_price);
+    let max_price = Number(req.query.max_price);
+    query = {$and:[{"quantity.price":{$gt:min_price}},{"quantity.price":{$lt:max_price}}]};
+    db.collection("products").find(query).toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
 app.get("/categories/:categoryid",(req,res)=>{
     let categoryid = Number(req.params.categoryid);
     let min_price = Number(req.query.min_price);
