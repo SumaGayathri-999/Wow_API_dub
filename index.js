@@ -119,6 +119,24 @@ app.get("/ingredients/:ingredientid",(req,res)=>{
     })
     
 })
+app.get("/product_types/:product_type_id",(req,res)=>{
+    let product_type_id = Number(req.params.product_type_id);
+    let min_price = Number(req.query.min_price);
+    let max_price = Number(req.query.max_price);
+    let query={};
+    if(min_price && max_price ){
+        query = {$and:[{"quantity.price":{$gt:min_price}},{"quantity.price":{$lt:max_price}},{"product_type_id":product_type_id}]};
+    }
+    else{
+         query={"product_type_id":product_type_id};
+    }
+    
+    db.collection("products").find(query).toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+    
+})
 app.get("/concern/:concernid",(req,res)=>{
     let concernid = Number(req.params.concernid);
     let min_price = Number(req.query.min_price);
